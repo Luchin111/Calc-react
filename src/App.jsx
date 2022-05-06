@@ -13,7 +13,7 @@ const App = () => {
   const [stack, setStack]=useState("");
   const items = words(stack, /[^-^+^*^/]+/g)
   const value = items.length>0 ? items[items.length-1]:"0";
-
+ 
 
   return (
     <main className="react-calculator">
@@ -43,7 +43,12 @@ const App = () => {
           }
           onDot={dot => 
             {
-              setStack(stack+""+dot)
+              if(!stack){
+                setStack(`0${dot}`)
+              }else{
+                setStack(`${stack}${dot}`)
+              }
+              
               
             }
               
